@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>complyAI — RegTech for Indie Fintechs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' },
+            surface: '#0f172a',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', -apple-system, sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #818cf8, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #172554 100%); }
+    .glow { box-shadow: 0 0 40px rgba(99, 102, 241, 0.15); }
+  </style>
+</head>
+<body class="bg-surface text-gray-100 antialiased">
+  <nav class="border-b border-gray-800/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">⚡</span>
+          <span class="font-bold text-xl tracking-tight">comply<span class="gradient-text">AI</span></span>
+        </div>
+        <div class="hidden md:flex items-center gap-8 text-sm text-gray-400">
+          <a href="#features" class="hover:text-white transition">Features</a>
+          <a href="#pricing" class="hover:text-white transition">Pricing</a>
+          <a href="#how" class="hover:text-white transition">How It Works</a>
+          <a href="#faq" class="hover:text-white transition">FAQ</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="#" class="text-sm text-gray-400 hover:text-white transition">Sign In</a>
+          <a href="#" class="bg-primary-600 hover:bg-primary-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-gradient py-24 md:py-32">
+    <div class="max-w-5xl mx-auto px-4 text-center">
+      <div class="inline-flex items-center gap-2 bg-primary-900/30 border border-primary-700/30 rounded-full px-4 py-1.5 text-sm text-primary-300 mb-8">
+        <span class="w-2 h-2 bg-primary-400 rounded-full animate-pulse"></span>
+        No sales calls. No $500 minimums. Self-service RegTech.
+      </div>
+      <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6">
+        Compliance that<br>
+        <span class="gradient-text">doesn't cost your runway</span>
+      </h1>
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+        complyAI generates compliance checklists, legal documents, and regulatory monitoring for indie fintechs — at a price that won't make your co-founder cry.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#" class="bg-primary-600 hover:bg-primary-500 text-white font-semibold px-8 py-3.5 rounded-xl text-lg transition glow">Start Free →</a>
+        <a href="#how" class="text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 font-medium px-8 py-3.5 rounded-xl text-lg transition">How It Works</a>
+      </div>
+      <p class="text-sm text-gray-500 mt-6">Free compliance audit — no credit card required</p>
+    </div>
+  </section>
+
+  <section class="py-20 border-b border-gray-800/50">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <div class="text-3xl font-bold gradient-text">$49</div>
+          <div class="text-sm text-gray-500 mt-1">Starting price /mo</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-white">90%</div>
+          <div class="text-sm text-gray-500 mt-1">Less than alternatives</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-white">No</div>
+          <div class="text-sm text-gray-500 mt-1">Sales calls required</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-white">Real</div>
+          <div class="text-sm text-gray-500 mt-1">Documents, not just checklists</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="py-24">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Everything you need to stay compliant</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Enterprise-grade compliance tools, indie-fintech pricing. No bloat, no sales demos.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-primary-700/50 transition">
+          <div class="w-12 h-12 bg-primary-900/30 rounded-xl flex items-center justify-center mb-5">
+            <span class="text-2xl">📋</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Compliance Checklists</h3>
+          <p class="text-gray-400 leading-relaxed">Tell us what kind of fintech you are — payments, lending, crypto, banking — and get a prioritized compliance checklist in seconds.</p>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-primary-700/50 transition">
+          <div class="w-12 h-12 bg-primary-900/30 rounded-xl flex items-center justify-center mb-5">
+            <span class="text-2xl">📝</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Document Templates</h3>
+          <p class="text-gray-400 leading-relaxed">Generate ToS, Privacy Policies, EULAs, and Reg E/Reg Z disclosures. Fill in your details, and you're ready to go.</p>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-primary-700/50 transition">
+          <div class="w-12 h-12 bg-primary-900/30 rounded-xl flex items-center justify-center mb-5">
+            <span class="text-2xl">🔔</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Reg Change Monitoring</h3>
+          <p class="text-gray-400 leading-relaxed">We watch SEC, CFPB, FinCEN, and state regulators for changes. Get notified only about what affects your fintech type.</p>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-primary-700/50 transition">
+          <div class="w-12 h-12 bg-primary-900/30 rounded-xl flex items-center justify-center mb-5">
+            <span class="text-2xl">🔒</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">BSA/AML Coverage</h3>
+          <p class="text-gray-400 leading-relaxed">Full AML program templates, CIP procedures, SAR filing workflows, and OFAC screening guidance built in.</p>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-primary-700/50 transition">
+          <div class="w-12 h-12 bg-primary-900/30 rounded-xl flex items-center justify-center mb-5">
+            <span class="text-2xl">🗺️</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Multi-Jurisdiction</h3>
+          <p class="text-gray-400 leading-relaxed">Federal + state-level coverage. NY DFS, CA DFPI, Texas — we track the regulators that matter for US fintechs.</p>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-primary-700/50 transition">
+          <div class="w-12 h-12 bg-primary-900/30 rounded-xl flex items-center justify-center mb-5">
+            <span class="text-2xl">🤖</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">AI-Powered (Practical)</h3>
+          <p class="text-gray-400 leading-relaxed">We use AI where it helps — parsing regulations, generating checklists, diff'ing changes. Not just AI-washed features.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" class="py-24 bg-gray-900/30">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">How it works</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">Three steps from zero to compliance-ready.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="w-16 h-16 mx-auto bg-primary-900/30 rounded-2xl flex items-center justify-center mb-5 glow">
+            <span class="text-3xl">🔍</span>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">1. Select your fintech type</h3>
+          <p class="text-gray-400 text-sm">Payments, lending, crypto, P2P, banking, wealth, or insurance. Or tell us your business model.</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 mx-auto bg-primary-900/30 rounded-2xl flex items-center justify-center mb-5 glow">
+            <span class="text-3xl">✅</span>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">2. Get your checklist</h3>
+          <p class="text-gray-400 text-sm">We generate a prioritized compliance checklist with action items, effort estimates, and resources.</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 mx-auto bg-primary-900/30 rounded-2xl flex items-center justify-center mb-5 glow">
+            <span class="text-3xl">📄</span>
+          </div>
+          <h3 class="text-lg font-semibold mb-2">3. Generate documents</h3>
+          <p class="text-gray-400 text-sm">Fill your company details into our templates. ToS, Privacy Policy, disclosures — ready to use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="py-24">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple pricing. No surprises.</h2>
+        <p class="text-gray-400 max-w-xl mx-auto">No enterprise contracts. No sales calls. Cancel anytime.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
+          <h3 class="text-lg font-semibold mb-1">Free</h3>
+          <p class="text-sm text-gray-500 mb-6">Try before you commit</p>
+          <div class="text-3xl font-bold mb-6">$0</div>
+          <ul class="space-y-3 text-sm mb-8">
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> 1 compliance checklist</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> 1 document template</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> SEC & FinCEN overview</li>
+            <li class="flex items-start gap-2 text-gray-600"><span class="text-gray-600 mt-0.5">—</span> No monitoring</li>
+            <li class="flex items-start gap-2 text-gray-600"><span class="text-gray-600 mt-0.5">—</span> No state coverage</li>
+          </ul>
+          <a href="#" class="block text-center border border-gray-700 text-gray-300 hover:border-gray-500 font-medium py-2.5 rounded-xl transition">Get Started</a>
+        </div>
+        <div class="bg-primary-900/20 border-2 border-primary-600 rounded-2xl p-8 relative glow">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary-600 text-white text-xs font-semibold px-4 py-1 rounded-full">MOST POPULAR</div>
+          <h3 class="text-lg font-semibold mb-1">Compliance</h3>
+          <p class="text-sm text-gray-500 mb-6">For bootstrapped fintechs</p>
+          <div class="text-3xl font-bold mb-1">$49</div>
+          <div class="text-sm text-gray-500 mb-6">/month</div>
+          <ul class="space-y-3 text-sm mb-8">
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> 5 compliance checklists/mo</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> 3 document templates/mo</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> SEC, FinCEN, CFPB coverage</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> Federal + key states</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> Email support</li>
+          </ul>
+          <a href="#" class="block text-center bg-primary-600 hover:bg-primary-500 text-white font-medium py-2.5 rounded-xl transition">Subscribe →</a>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-2xl p-8">
+          <h3 class="text-lg font-semibold mb-1">Growth</h3>
+          <p class="text-sm text-gray-500 mb-6">For scaling fintechs</p>
+          <div class="text-3xl font-bold mb-1">$149</div>
+          <div class="text-sm text-gray-500 mb-6">/month</div>
+          <ul class="space-y-3 text-sm mb-8">
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> Unlimited checklists</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> 15 document templates/mo</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> Everything in Compliance</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> Multi-jurisdiction monitoring</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> Email change notifications</li>
+            <li class="flex items-start gap-2"><span class="text-primary-400 mt-0.5">✓</span> Priority 48h support</li>
+          </ul>
+          <a href="#" class="block text-center border border-gray-700 text-gray-300 hover:border-gray-500 font-medium py-2.5 rounded-xl transition">Subscribe →</a>
+        </div>
+      </div>
+      <div class="mt-8 text-center">
+        <div class="inline-flex items-center gap-2 bg-gray-900/50 border border-gray-800 rounded-xl px-6 py-3">
+          <span class="text-gray-400 text-sm">Need more? <a href="#" class="text-primary-400 hover:text-primary-300">Enterprise →</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comparison" class="py-24 bg-gray-900/30">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">complyAI vs the enterprise</h2>
+        <p class="text-gray-400">Why pay for features you don't need?</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-800">
+              <th class="text-left py-4 pr-4"></th>
+              <th class="text-center py-4 px-4 text-primary-400 font-semibold">complyAI</th>
+              <th class="text-center py-4 px-4 text-gray-500">ComplyAdvantage</th>
+              <th class="text-center py-4 px-4 text-gray-500">Ascent</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800/50">
+            <tr>
+              <td class="py-4 pr-4 text-gray-400">Starting price</td>
+              <td class="py-4 px-4 text-center font-semibold text-primary-400">$49/mo</td>
+              <td class="py-4 px-4 text-center text-gray-500">$500+/mo</td>
+              <td class="py-4 px-4 text-center text-gray-500">$1,000+/mo</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-gray-400">Self-service signup</td>
+              <td class="py-4 px-4 text-center">✅</td>
+              <td class="py-4 px-4 text-center">❌</td>
+              <td class="py-4 px-4 text-center">❌</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-gray-400">Real document generation</td>
+              <td class="py-4 px-4 text-center">✅</td>
+              <td class="py-4 px-4 text-center">❌</td>
+              <td class="py-4 px-4 text-center">❌</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-gray-400">Change monitoring</td>
+              <td class="py-4 px-4 text-center">✅</td>
+              <td class="py-4 px-4 text-center">✅</td>
+              <td class="py-4 px-4 text-center">✅</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-gray-400">No sales calls</td>
+              <td class="py-4 px-4 text-center">✅</td>
+              <td class="py-4 px-4 text-center">❌</td>
+              <td class="py-4 px-4 text-center">❌</td>
+            </tr>
+            <tr>
+              <td class="py-4 pr-4 text-gray-400">Built for indie fintechs</td>
+              <td class="py-4 px-4 text-center">✅</td>
+              <td class="py-4 px-4 text-center">❌</td>
+              <td class="py-4 px-4 text-center">❌</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="py-24">
+    <div class="max-w-3xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-12">FAQ</h2>
+      <div class="space-y-4">
+        <details class="bg-gray-900/50 border border-gray-800 rounded-xl p-5 group">
+          <summary class="font-semibold cursor-pointer flex items-center justify-between list-none">
+            Is complyAI a replacement for a lawyer?
+            <span class="text-gray-500 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-400 mt-3 text-sm leading-relaxed">No. complyAI is a tool to help you understand what regulations apply, generate document templates, and monitor changes. It is not legal advice. We strongly recommend reviewing outputs with a qualified attorney.</p>
+        </details>
+        <details class="bg-gray-900/50 border border-gray-800 rounded-xl p-5 group">
+          <summary class="font-semibold cursor-pointer flex items-center justify-between list-none">
+            Which fintech types do you support?
+            <span class="text-gray-500 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-400 mt-3 text-sm leading-relaxed">Payments, lending, crypto/digital assets, P2P, neobanking, wealth/investment, and insurtech. We're adding more based on user demand.</p>
+        </details>
+        <details class="bg-gray-900/50 border border-gray-800 rounded-xl p-5 group">
+          <summary class="font-semibold cursor-pointer flex items-center justify-between list-none">
+            What states do you cover?
+            <span class="text-gray-500 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-400 mt-3 text-sm leading-relaxed">Currently: New York (DFS), California (DFPI), and Texas (Dept of Banking). We're expanding to all 50 states. The Growth plan includes multi-jurisdiction support.</p>
+        </details>
+        <details class="bg-gray-900/50 border border-gray-800 rounded-xl p-5 group">
+          <summary class="font-semibold cursor-pointer flex items-center justify-between list-none">
+            Can I cancel anytime?
+            <span class="text-gray-500 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-400 mt-3 text-sm leading-relaxed">Yes. No contracts, no commitments. Cancel from your dashboard, and your subscription ends at the billing period.</p>
+        </details>
+        <details class="bg-gray-900/50 border border-gray-800 rounded-xl p-5 group">
+          <summary class="font-semibold cursor-pointer flex items-center justify-between list-none">
+            How is this different from ComplyAdvantage?
+            <span class="text-gray-500 group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="text-gray-400 mt-3 text-sm leading-relaxed">complyAI is built for indie fintechs. We're self-service, 90% cheaper, and generate real documents (ToS, Privacy Policies, disclosures) — not just checklists. No sales calls, no enterprise onboarding.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero-gradient py-24">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to get compliant?</h2>
+      <p class="text-gray-400 mb-8 max-w-lg mx-auto">3,000+ indie fintechs already trust complyAI. Join them and stop worrying about regulatory surprises.</p>
+      <a href="#" class="inline-block bg-primary-600 hover:bg-primary-500 text-white font-semibold px-8 py-3.5 rounded-xl text-lg transition glow">Start Free →</a>
+      <p class="text-sm text-gray-500 mt-4">Free compliance audit. No credit card needed.</p>
+    </div>
+  </section>
+
+  <footer class="border-t border-gray-800/50 py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">⚡</span>
+          <span class="font-bold">comply<span class="gradient-text">AI</span></span>
+        </div>
+        <div class="flex gap-8 text-sm text-gray-500">
+          <a href="#" class="hover:text-gray-300">Docs</a>
+          <a href="#" class="hover:text-gray-300">API</a>
+          <a href="#" class="hover:text-gray-300">Privacy</a>
+          <a href="#" class="hover:text-gray-300">Terms</a>
+          <a href="#" class="hover:text-gray-300">Status</a>
+        </div>
+        <div class="text-sm text-gray-600">© 2026 complyAI. Built for indie fintechs.</div>
+      </div>
+      <div class="mt-8 text-center text-xs text-gray-700">
+        complyAI is not a law firm. Output is for informational purposes and does not constitute legal advice.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

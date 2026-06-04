@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>complyAI Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 300: '#a5b4fc', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' },
+            surface: '#0f172a',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', -apple-system, sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #818cf8, #6366f1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .sidebar-link:hover .sidebar-icon { color: #818cf8; }
+  </style>
+</head>
+<body class="bg-surface text-gray-100 antialiased flex h-screen overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="w-64 border-r border-gray-800/50 flex flex-col flex-shrink-0">
+    <div class="p-5 border-b border-gray-800/50">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">⚡</span>
+        <span class="font-bold text-lg tracking-tight">comply<span class="gradient-text">AI</span></span>
+      </div>
+    </div>
+    <nav class="flex-1 p-3 space-y-1">
+      <a href="#" class="sidebar-link flex items-center gap-3 text-sm px-3 py-2.5 rounded-xl bg-primary-600/20 text-primary-300 font-medium">
+        <span class="sidebar-icon w-5 text-center">📊</span> Dashboard
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 text-sm px-3 py-2.5 rounded-xl text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition">
+        <span class="sidebar-icon w-5 text-center">📋</span> Checklists
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 text-sm px-3 py-2.5 rounded-xl text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition">
+        <span class="sidebar-icon w-5 text-center">📝</span> Documents
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 text-sm px-3 py-2.5 rounded-xl text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition">
+        <span class="sidebar-icon w-5 text-center">🔔</span> Monitoring
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 text-sm px-3 py-2.5 rounded-xl text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition">
+        <span class="sidebar-icon w-5 text-center">🏛️</span> Regulations
+      </a>
+      <a href="#" class="sidebar-link flex items-center gap-3 text-sm px-3 py-2.5 rounded-xl text-gray-400 hover:bg-gray-800/50 hover:text-gray-200 transition">
+        <span class="sidebar-icon w-5 text-center">⚙️</span> Settings
+      </a>
+    </nav>
+    <div class="p-4 border-t border-gray-800/50">
+      <div class="flex items-center gap-3 text-sm">
+        <div class="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center text-xs font-bold">SF</div>
+        <div>
+          <div class="text-sm font-medium">Stripe Fintech Inc.</div>
+          <div class="text-xs text-gray-500">Compliance Plan</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex flex-col overflow-hidden">
+    <!-- Top Bar -->
+    <header class="border-b border-gray-800/50 px-6 py-3 flex items-center justify-between flex-shrink-0">
+      <div>
+        <h1 class="text-lg font-semibold">Dashboard</h1>
+        <p class="text-xs text-gray-500">Your compliance overview</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <button class="text-sm text-gray-400 hover:text-white bg-gray-800/50 px-3 py-1.5 rounded-lg border border-gray-700/50 transition">Export</button>
+        <button class="text-sm bg-primary-600 hover:bg-primary-500 text-white px-4 py-1.5 rounded-lg transition">New Checklist</button>
+      </div>
+    </header>
+
+    <!-- Scrollable Content -->
+    <div class="flex-1 overflow-y-auto p-6">
+      <!-- Stats Row -->
+      <div class="grid grid-cols-4 gap-4 mb-8">
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-4">
+          <div class="text-2xl font-bold">7</div>
+          <div class="text-xs text-gray-500 mt-1">Regulations Tracked</div>
+          <div class="text-xs text-primary-400 mt-1">SEC, FinCEN, CFPB, 3 states</div>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-4">
+          <div class="text-2xl font-bold">3</div>
+          <div class="text-xs text-gray-500 mt-1">Pending Actions</div>
+          <div class="text-xs text-amber-400 mt-1">2 critical due this month</div>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-4">
+          <div class="text-2xl font-bold">5</div>
+          <div class="text-xs text-gray-500 mt-1">Generated Docs</div>
+          <div class="text-xs text-primary-400 mt-1">2 remaining this month</div>
+        </div>
+        <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-4">
+          <div class="text-2xl font-bold">1</div>
+          <div class="text-xs text-gray-500 mt-1">Recent Changes</div>
+          <div class="text-xs text-amber-400 mt-1">Updated 2 days ago</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6">
+        <!-- Left Column -->
+        <div class="col-span-2 space-y-6">
+          <!-- Checklist Section -->
+          <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="font-semibold">Key Compliance Items</h2>
+              <a href="#" class="text-xs text-primary-400 hover:text-primary-300">View All</a>
+            </div>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between py-2 px-3 bg-gray-800/30 rounded-lg border-l-4 border-red-500">
+                <div>
+                  <div class="text-sm font-medium">BSA/AML Program</div>
+                  <div class="text-xs text-gray-500">Designate compliance officer, create written policies</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs bg-red-900/30 text-red-400 px-2 py-0.5 rounded-full">Critical</span>
+                  <input type="checkbox" class="rounded border-gray-600">
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2 px-3 bg-gray-800/30 rounded-lg border-l-4 border-amber-500">
+                <div>
+                  <div class="text-sm font-medium">Money Transmitter License</div>
+                  <div class="text-xs text-gray-500">Apply in operating states</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs bg-amber-900/30 text-amber-400 px-2 py-0.5 rounded-full">High</span>
+                  <input type="checkbox" class="rounded border-gray-600">
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2 px-3 bg-gray-800/30 rounded-lg border-l-4 border-emerald-500">
+                <div>
+                  <div class="text-sm font-medium">Privacy Policy (GLBA)</div>
+                  <div class="text-xs text-gray-500">Generate from template</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs bg-emerald-900/30 text-emerald-400 px-2 py-0.5 rounded-full">Medium</span>
+                  <input type="checkbox" class="rounded border-gray-600" checked>
+                </div>
+              </div>
+              <div class="flex items-center justify-between py-2 px-3 bg-gray-800/30 rounded-lg border-l-4 border-emerald-500">
+                <div>
+                  <div class="text-sm font-medium">Reg E Disclosure</div>
+                  <div class="text-xs text-gray-500">EFTA disclosure for ACH/debit</div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs bg-emerald-900/30 text-emerald-400 px-2 py-0.5 rounded-full">Medium</span>
+                  <input type="checkbox" class="rounded border-gray-600" checked>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Changes -->
+          <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h2 class="font-semibold">Recent Regulatory Changes</h2>
+              <a href="#" class="text-xs text-primary-400 hover:text-primary-300">View All</a>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3 pb-3 border-b border-gray-800/50">
+                <div class="w-8 h-8 bg-amber-900/30 rounded-lg flex items-center justify-center text-sm flex-shrink-0">⚠️</div>
+                <div>
+                  <div class="text-sm font-medium">CFPB — Small Business Lending Rule Updates</div>
+                  <div class="text-xs text-gray-500 mt-1">New data collection requirements for Section 1071. Effective date extended.</div>
+                  <div class="text-xs text-gray-600 mt-1">2 days ago · Affects: Lending</div>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 bg-blue-900/30 rounded-lg flex items-center justify-center text-sm flex-shrink-0">ℹ️</div>
+                <div>
+                  <div class="text-sm font-medium">NY DFS — Cybersecurity Regulation Amendment</div>
+                  <div class="text-xs text-gray-500 mt-1">Updated incident reporting requirements. 72-hour notification window.</div>
+                  <div class="text-xs text-gray-600 mt-1">2 weeks ago · Affects: All fintechs in NY</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="space-y-6">
+          <!-- Quick Generate -->
+          <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+            <h2 class="font-semibold mb-4">Quick Generate</h2>
+            <div class="space-y-3">
+              <select class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300">
+                <option>Select fintech type</option>
+                <option>Payments</option>
+                <option>Lending</option>
+                <option>Crypto</option>
+                <option>Neobank</option>
+              </select>
+              <select class="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300">
+                <option>Select document</option>
+                <option>Terms of Service</option>
+                <option>Privacy Policy</option>
+                <option>Reg E Disclosure</option>
+                <option>AML Policy</option>
+              </select>
+              <button class="w-full bg-primary-600 hover:bg-primary-500 text-white text-sm font-medium py-2.5 rounded-lg transition">
+                Generate Now
+              </button>
+            </div>
+          </div>
+
+          <!-- Plan Info -->
+          <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+            <h2 class="font-semibold mb-3">Plan Usage</h2>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-gray-400">Checklists</span>
+                  <span class="text-gray-400">2 / 5</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                  <div class="h-full bg-primary-600 rounded-full" style="width: 40%"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="text-gray-400">Documents</span>
+                  <span class="text-gray-400">1 / 3</span>
+                </div>
+                <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                  <div class="h-full bg-primary-600 rounded-full" style="width: 33%"></div>
+                </div>
+              </div>
+              <div class="pt-3">
+                <a href="#" class="block text-center text-sm text-primary-400 hover:text-primary-300 border border-primary-800/50 rounded-lg py-2 transition">
+                  Upgrade to Growth → $149/mo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Coverage -->
+          <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+            <h2 class="font-semibold mb-3">Your Coverage</h2>
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-sm">
+                <span>SEC</span>
+                <span class="text-emerald-400 text-xs">Active</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span>FinCEN</span>
+                <span class="text-emerald-400 text-xs">Active</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span>CFPB</span>
+                <span class="text-emerald-400 text-xs">Active</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span>NY DFS</span>
+                <span class="text-emerald-400 text-xs">Covered</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span>CA DFPI</span>
+                <span class="text-amber-400 text-xs">Not covered</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span>Texas</span>
+                <span class="text-amber-400 text-xs">Not covered</span>
+              </div>
+              <div class="mt-2 pt-2 border-t border-gray-800/50">
+                <a href="#" class="text-xs text-primary-400 hover:text-primary-300">Add coverage →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Docs -->
+          <div class="bg-gray-900/50 border border-gray-800 rounded-xl p-6">
+            <h2 class="font-semibold mb-3">Recent Documents</h2>
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between py-1">
+                <span class="text-gray-300">Terms of Service</span>
+                <span class="text-gray-500">Mar 15</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-gray-300">Privacy Policy</span>
+                <span class="text-gray-500">Mar 12</span>
+              </div>
+              <div class="flex justify-between py-1">
+                <span class="text-gray-300">Reg E Disclosure</span>
+                <span class="text-gray-500">Mar 10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
