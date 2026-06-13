@@ -16,9 +16,10 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, HTTPException, Query
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Depends, FastAPI, HTTPException, Query
 from pydantic import BaseModel, Field
+
+from cubiczan_resilience import require_auth, cors_allowlist
 
 # Enable relative imports for direct module usage
 import sys
@@ -57,9 +58,10 @@ app = FastAPI(
     version="1.0.0",
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
+# Replace wildcard CORS with an explicit allowlist (fail-closed; configurable
+# via the COMPLYAI_CORS_ORIGINS env var, comma-separated).
+cors_allowlist(
+    app,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -183,8 +185,11 @@ async def api_supported_types():
 
 
 @app.get("/api/ingest/{agency}", response_model=IngestResponse)
-async def api_ingest(agency: str):
-    """Trigger regulatory ingestion for a specific agency or 'all'."""
+async def api_ingest(agency: str, _auth=Depends(require_auth)):
+    """Trigger regulatory ingestion for a specific agency or 'all'.
+
+    Auth-protected (fail-closed): this triggers outbound crawls and DB writes.
+    """
     agency = agency.lower()
     logger.info(f"📥 Ingestion requested: {agency}")
 
@@ -243,8 +248,11 @@ async def api_monitor_changes(
 
 
 @app.get("/api/monitor/crawl")
-async def api_crawl():
-    """Trigger a full regulatory crawl across all sources."""
+async def api_crawl(_auth=Depends(require_auth)):
+    """Trigger a full regulatory crawl across all sources.
+
+    Auth-protected (fail-closed): this triggers outbound crawls and DB writes.
+    """
     logger.info("🕷️ Crawl requested")
     results = crawl_all(force=False)
     changes = detect_changes()

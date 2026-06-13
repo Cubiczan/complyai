@@ -9,6 +9,7 @@ Agencies supported:
 """
 
 import json
+import logging
 import re
 import sqlite3
 from datetime import datetime, date
@@ -18,6 +19,22 @@ from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
+
+from cubiczan_resilience import resilient
+
+logger = logging.getLogger("complyai.ingest")
+
+
+@resilient(timeout=30, max_attempts=3)
+def _fetch(url: str, headers: Optional[dict] = None, timeout: int = 30) -> requests.Response:
+    """Fetch a URL with retry + exponential backoff + jitter + circuit breaker.
+
+    Raises for non-2xx responses so the @resilient decorator can retry transient
+    HTTP failures rather than returning a silent zero-count.
+    """
+    resp = requests.get(url, headers=headers, timeout=timeout)
+    resp.raise_for_status()
+    return resp
 
 # ─── Database ────────────────────────────────────────────────────────────────
 
@@ -168,15 +185,12 @@ def ingest_sec(start_date: Optional[str] = None, end_date: Optional[str] = None)
     }
 
     try:
-        # Search for recent rule filings
-        resp = requests.get(
+        # Search for recent rule filings (retry + backoff + jitter via @resilient)
+        resp = _fetch(
             SEC_SEARCH % ("rulemaking", start_date, end_date),
             headers=headers,
             timeout=30,
         )
-        if resp.status_code != 200:
-            _log_crawl(conn, "SEC", "error", error=f"HTTP {resp.status_code}")
-            return 0
 
         data = resp.json()
         filings = data.get("hits", {}).get("hits", [])
@@ -206,6 +220,7 @@ def ingest_sec(start_date: Optional[str] = None, end_date: Optional[str] = None)
 
         _log_crawl(conn, "SEC", "success", rules_found=count)
     except Exception as e:
+        logger.warning("SEC ingest HTTP failure after retries: %s", e)
         _log_crawl(conn, "SEC", "error", error=str(e))
         count = 0
     finally:
@@ -285,14 +300,11 @@ def ingest_fincen() -> int:
     count = 0
 
     try:
-        resp = requests.get(
+        resp = _fetch(
             FINCEN_URL,
             headers={"User-Agent": "complyAI/1.0"},
             timeout=30,
         )
-        if resp.status_code != 200:
-            _log_crawl(conn, "FinCEN", "error", error=f"HTTP {resp.status_code}")
-            return 0
 
         soup = BeautifulSoup(resp.text, "html.parser")
         links = soup.select("a[href*='/resources/']")
@@ -323,6 +335,7 @@ def ingest_fincen() -> int:
 
         _log_crawl(conn, "FinCEN", "success", rules_found=count)
     except Exception as e:
+        logger.warning("FinCEN ingest HTTP failure after retries: %s", e)
         _log_crawl(conn, "FinCEN", "error", error=str(e))
         count = 0
     finally:
@@ -402,14 +415,11 @@ def ingest_cfpb() -> int:
     count = 0
 
     try:
-        resp = requests.get(
+        resp = _fetch(
             CFPB_RULES,
             headers={"User-Agent": "complyAI/1.0"},
             timeout=30,
         )
-        if resp.status_code != 200:
-            _log_crawl(conn, "CFPB", "error", error=f"HTTP {resp.status_code}")
-            return 0
 
         soup = BeautifulSoup(resp.text, "html.parser")
         rule_items = soup.select("article, .rule-item, .post-preview")
@@ -455,6 +465,7 @@ def ingest_cfpb() -> int:
 
         _log_crawl(conn, "CFPB", "success", rules_found=count)
     except Exception as e:
+        logger.warning("CFPB ingest HTTP failure after retries: %s", e)
         _log_crawl(conn, "CFPB", "error", error=str(e))
         count = 0
     finally:

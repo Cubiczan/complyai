@@ -9,6 +9,9 @@ pydantic>=2.0.0
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 
+# ─── Resilience (retry/backoff/jitter/circuit-breaker, auth helpers) ─────
+cubiczan-resilience @ git+https://github.com/icohangar-ops/cubiczan-resilience.git#subdirectory=python
+
 # ─── HTML/XML Parsing ───────────────────────────────────────────────────
 lxml>=5.1.0  # Required by BeautifulSoup for XML/RSS feeds
 html5lib>=1.1  # For robust HTML parsing

@@ -7,11 +7,25 @@ Stores changes for the monitor to process.
 
 from datetime import datetime, date, timedelta
 from typing import Optional
+import logging
 import sqlite3
 from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+
+from cubiczan_resilience import resilient
+
+logger = logging.getLogger("complyai.crawler")
+
+
+@resilient(timeout=30, max_attempts=3)
+def _fetch_feed_raw(url: str, timeout: int = 30) -> requests.Response:
+    """Fetch a feed URL with retry + exponential backoff + jitter + circuit breaker."""
+    headers = {"User-Agent": "complyAI-Crawler/1.0"}
+    resp = requests.get(url, headers=headers, timeout=timeout)
+    resp.raise_for_status()
+    return resp
 
 from engine.ingest import (
     get_db,
@@ -44,9 +58,7 @@ CACHE_EXPIRY_HOURS = 24  # Re-fetch after this many hours
 def fetch_feed(url: str, timeout: int = 30) -> Optional[list[dict]]:
     """Fetch and parse an RSS/Atom feed into entries."""
     try:
-        headers = {"User-Agent": "complyAI-Crawler/1.0"}
-        resp = requests.get(url, headers=headers, timeout=timeout)
-        resp.raise_for_status()
+        resp = _fetch_feed_raw(url, timeout=timeout)
 
         soup = BeautifulSoup(resp.content, "xml")
         entries = []
@@ -80,9 +92,11 @@ def fetch_feed(url: str, timeout: int = 30) -> Optional[list[dict]]:
         return entries[:20]  # limit per feed
 
     except requests.RequestException as e:
+        logger.warning("Feed fetch failed after retries (%s): %s", url[:60], e)
         print(f"  ⚠️  Feed fetch failed ({url[:60]}...): {e}")
         return None
     except Exception as e:
+        logger.warning("Feed fetch/parse error (%s): %s", url[:60], e)
         print(f"  ⚠️  Feed parse error ({url[:60]}...): {e}")
         return None
 
