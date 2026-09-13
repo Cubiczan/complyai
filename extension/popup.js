@@ -148,10 +148,13 @@ function renderResults(data) {
   mediumCount.className = `badge badge-${s.medium > 0 ? "medium" : "none"}`;
   lowCount.className = `badge badge-${s.low > 0 ? "low" : "none"}`;
 
-  // Flags
-  flagsList.innerHTML = "";
+  // Flags — build with DOM APIs so API fields cannot inject HTML.
+  flagsList.replaceChildren();
   if (!data.flags || data.flags.length === 0) {
-    flagsList.innerHTML = '<p class="no-flags">✅ No compliance issues detected</p>';
+    const empty = document.createElement("p");
+    empty.className = "no-flags";
+    empty.textContent = "✅ No compliance issues detected";
+    flagsList.appendChild(empty);
     return;
   }
 
@@ -162,15 +165,30 @@ function renderResults(data) {
     flagEl.style.borderLeftColor = color.border;
     flagEl.style.backgroundColor = color.bg;
 
-    flagEl.innerHTML = `
-      <div class="flag-header">
-        <span class="flag-badge" style="background:${color.border};color:white">${color.label}</span>
-        <span class="flag-rule">${flag.rule}</span>
-      </div>
-      <p class="flag-message">${flag.message}</p>
-      <p class="flag-passage">"${escapeHtml(flag.passage)}"</p>
-    `;
+    const header = document.createElement("div");
+    header.className = "flag-header";
 
+    const badge = document.createElement("span");
+    badge.className = "flag-badge";
+    badge.style.background = color.border;
+    badge.style.color = "white";
+    badge.textContent = color.label;
+
+    const rule = document.createElement("span");
+    rule.className = "flag-rule";
+    rule.textContent = String(flag.rule ?? "");
+
+    header.append(badge, rule);
+
+    const message = document.createElement("p");
+    message.className = "flag-message";
+    message.textContent = String(flag.message ?? "");
+
+    const passage = document.createElement("p");
+    passage.className = "flag-passage";
+    passage.textContent = `"${flag.passage ?? ""}"`;
+
+    flagEl.append(header, message, passage);
     flagsList.appendChild(flagEl);
   });
 }
@@ -181,10 +199,4 @@ function hideAll() {
   error.classList.add("hidden");
   results.classList.add("hidden");
   noServerMsg.classList.add("hidden");
-}
-
-function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
 }
